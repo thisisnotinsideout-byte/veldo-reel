@@ -34,8 +34,6 @@ export const ACCENTS: Record<SceneKind, string> = {
 
 const KEY_WORD_RE = /^(never|prompt|claude|forgot|follow)[.,!?:;]?$/i;
 
-const clean = (w: string) => w.replace(/[^a-z]/gi, "").toLowerCase();
-
 const pickFontSize = (text: string) => {
   const len = text.length;
   if (len < 22) return 148;
@@ -157,7 +155,6 @@ const ChunkView: React.FC<ChunkViewProps> = ({
             return <span key={i}>{token}</span>;
           }
           wordIndex += 1;
-          const cleaned = clean(token);
           const isKey = KEY_WORD_RE.test(token);
 
           const wf = local - wordIndex * stagger;
